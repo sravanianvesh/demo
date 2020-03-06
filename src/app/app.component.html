@@ -1,0 +1,74 @@
+<div>
+  <span><p>select number of rows to be displayed</p></span>
+   <select id="rowsTodisplayed"  ng-model="selectedItemvalue" (change)= "noOfRowsDisplayed($event)">
+      <option value="{{maxRows}}">{{maxRows}}</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+   </select>
+</div>
+<div id="table-scroll" class="table-scroll">
+   <table id="main-table" class="main-table">
+      <thead>
+         <tr>
+           <th></th>
+           <th>id</th>
+            <th>name</th>
+            <th>phone</th>
+            <th>email</th>
+            <th>company</th>
+            <th>date_entry</th>
+            <th>org_num</th>
+            <th>address_1</th>
+            <th>geo</th>
+            <th>pan</th>
+            <th>pin</th>
+            <th>status</th>
+            <th>fee</th>
+            <th>guid</th>
+            <th>date_exit</th>
+            <th>date_first</th>
+            <th>date_recent</th>
+            <th>url</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let table of tableData ">
+           <td><button (click)="RowSelected(table)"></button></td>
+            <td>{{ table.id }}</td>
+            <td>{{ table.name }}</td>
+            <td>{{ table.phone }}</td>
+            <td>{{ table.email }}</td>
+            <td>{{ table.company }}</td>
+            <td>{{ table.date_entry }}</td>
+            <td>{{ table.org_num }}</td>
+            <td>{{ table.address_1 }}</td>
+            <td>{{ table.geo }}</td>
+            <td>{{ table.pan }}</td>
+            <td>{{ table.pin }}</td>
+            <td>{{ table.status }}</td>
+            <td>{{ table.fee }}</td>
+            <td>{{ table.guid }}</td>
+            <td>{{ table.date_exit }}</td>
+            <td>{{ table.date_first }}</td>
+            <td>{{ table.date_recent }}</td>
+            <td>{{ table.url }}</td>
+         </tr>
+      </tbody>
+      <tfoot *ngIf = "selectedRows < maxRows">
+         <tr>
+            <td colspan="20">
+               <div class="pagination">
+                  <span *ngIf = "prevtable.length >0 && maxDisplayedRows <= 10">
+                  <a  (click)="prevPage()">« Prev</a>
+                  </span>
+                  <span *ngIf = "isNextDisaplayed">
+                  <a  (click)="nextPage()">Next »</a>
+                  </span>
+               </div>
+            </td>
+         </tr>
+      </tfoot>
+   </table>
+</div>
